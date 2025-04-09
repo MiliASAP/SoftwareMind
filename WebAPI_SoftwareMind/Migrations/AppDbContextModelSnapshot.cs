@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace WebAPI_SoftwareMind.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(NegotiationDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -23,11 +23,11 @@ namespace WebAPI_SoftwareMind.Migrations
 
             modelBuilder.Entity("Negotiation", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("NegotiationId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NegotiationId"));
 
                     b.Property<int>("Attempts")
                         .HasColumnType("int");
@@ -45,20 +45,41 @@ namespace WebAPI_SoftwareMind.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("NegotiationId");
 
                     b.HasIndex("ProductId");
 
                     b.ToTable("Negotiations");
                 });
 
-            modelBuilder.Entity("WebAPI_SoftwareMind.Models.Product", b =>
+            modelBuilder.Entity("WebAPI_SoftwareMind.Models.Entities.Employee", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"));
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EmployeeId");
+
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("WebAPI_SoftwareMind.Models.Entities.Product", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -67,14 +88,14 @@ namespace WebAPI_SoftwareMind.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProductId");
 
                     b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Negotiation", b =>
                 {
-                    b.HasOne("WebAPI_SoftwareMind.Models.Product", "Product")
+                    b.HasOne("WebAPI_SoftwareMind.Models.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)

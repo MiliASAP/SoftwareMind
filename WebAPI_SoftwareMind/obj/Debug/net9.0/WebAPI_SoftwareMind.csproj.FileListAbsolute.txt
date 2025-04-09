@@ -160,3 +160,11 @@ C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_Sof
 C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\obj\Debug\net9.0\WebAPI_SoftwareMind.pdb
 C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\obj\Debug\net9.0\WebAPI_SoftwareMind.genruntimeconfig.cache
 C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\obj\Debug\net9.0\ref\WebAPI_SoftwareMind.dll
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\obj\Debug\net9.0\WebAPI_SoftwareMind.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\bin\Debug\net9.0\Mapster.dll
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\bin\Debug\net9.0\Mapster.Core.dll

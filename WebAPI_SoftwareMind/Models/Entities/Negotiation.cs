@@ -1,15 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using WebAPI_SoftwareMind.Models;
+using WebAPI_SoftwareMind.Models.Entities;
 
 public class Negotiation
 {
-    public int Id { get; set; }
+    [Key]
+    public int NegotiationId { get; set; }
 
     [Required]
     public int ProductId { get; set; }
 
     [Required]
-    [Range(0.01, double.MaxValue, ErrorMessage = "Proponowana cena musi być większa od 0")]
     public decimal ProposedPrice { get; set; }
 
     [Required]

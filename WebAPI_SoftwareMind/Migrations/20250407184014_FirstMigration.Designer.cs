@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace WebAPI_SoftwareMind.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(NegotiationDbContext))]
     [Migration("20250407184014_FirstMigration")]
     partial class FirstMigration
     {
