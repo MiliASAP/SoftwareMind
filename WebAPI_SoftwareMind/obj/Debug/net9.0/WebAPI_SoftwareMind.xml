@@ -1,0 +1,377 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPI_SoftwareMind</name>
+    </assembly>
+    <members>
+        <member name="M:AuthController.Login(WebAPI_SoftwareMind.Models.Api.LoginRequest)">
+            <summary>
+            Logs in a user and returns an authentication token.
+            </summary>
+            <param name="request">The login request containing username and password.</param>
+            <returns>A login response with a JWT token if authentication is successful.</returns>
+            <response code="200">Returns the JWT token on successful authentication</response>
+            <response code="401">Unauthorized, invalid credentials</response>
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Controllers.NegotiationController.Create(WebAPI_SoftwareMind.Models.Entities.DTOs.NegotiationInsertProductDTO)">
+            <summary>
+            Starts a new negotiation for a product.
+            </summary>
+            <param name="negotiationDto">Data transfer object for starting a negotiation</param>
+            <returns>The created negotiation</returns>
+            <response code="201">Negotiation successfully created</response>
+            <response code="400">Invalid data or product not found</response>
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Controllers.NegotiationController.GetAll">
+            <summary>
+            Retrieves all negotiations.
+            </summary>
+            <returns>A list of negotiations</returns>
+            <response code="200">Returns a list of negotiations</response>
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Controllers.NegotiationController.GetNegotiationById(System.Int32)">
+            <summary>
+            Retrieves a negotiation by its unique identifier.
+            </summary>
+            <param name="id">The negotiation's unique identifier</param>
+            <returns>A single negotiation</returns>
+            <response code="200">Returns the requested negotiation</response>
+            <response code="404">Negotiation not found</response>
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Controllers.NegotiationController.Decide(WebAPI_SoftwareMind.Models.Entities.DTOs.NegotiationDecisionDTO)">
+            <summary>
+            Makes a decision on a negotiation (accept or reject).
+            </summary>
+            <param name="dto">The negotiation decision data</param>
+            <returns>The updated negotiation</returns>
+            <response code="200">Negotiation updated successfully</response>
+            <response code="404">Negotiation not found</response>
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Controllers.NegotiationController.Negotiate(WebAPI_SoftwareMind.Models.Entities.DTOs.NegotiationNegotiateDTO)">
+            <summary>
+            Allows to retry negotiation by proposing a new price.
+            </summary>
+            <param name="negotiationDto" example = "{}">Negotiation details for retrying</param>
+            <returns>The updated negotiation</returns>
+            <response code="200">Negotiation updated successfully</response>
+            <response code="400">Invalid data or negotiation already decided</response>
+        </member>
+        <member name="T:WebAPI_SoftwareMind.Migrations.FirstMigration">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Migrations.FirstMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Migrations.FirstMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Migrations.FirstMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:WebAPI_SoftwareMind.Migrations.addingEmployee">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Migrations.addingEmployee.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Migrations.addingEmployee.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Migrations.addingEmployee.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:WebAPI_SoftwareMind.Migrations.changingNameOfId">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Migrations.changingNameOfId.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Migrations.changingNameOfId.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Migrations.changingNameOfId.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:WebAPI_SoftwareMind.Migrations.testAdmin2">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Migrations.testAdmin2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Migrations.testAdmin2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Migrations.testAdmin2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:WebAPI_SoftwareMind.Models.Entities.DTOs.NegotiationDecisionDTO">
+            <summary>
+            DTO for negotiating the decision on a product's price.
+            This model is used when the negotiation process is being decided, either by accepting or rejecting the negotiation.
+            </summary>
+        </member>
+        <member name="P:WebAPI_SoftwareMind.Models.Entities.DTOs.NegotiationDecisionDTO.NegotiationId">
+            <summary>
+            The unique identifier for the negotiation.
+            </summary>
+            <example>10</example>
+        </member>
+        <member name="P:WebAPI_SoftwareMind.Models.Entities.DTOs.NegotiationDecisionDTO.Decision">
+            <summary>
+            The decision regarding the negotiation, either "accept" or "reject".
+            </summary>
+            <example>accept</example>
+        </member>
+        <member name="T:WebAPI_SoftwareMind.Models.Entities.DTOs.NegotiationInsertProductDTO">
+            <summary>
+            DTO used for inserting a new negotiation with a product.
+            This model is used when creating a new negotiation for a product, where the user proposes a price.
+            </summary>
+        </member>
+        <member name="P:WebAPI_SoftwareMind.Models.Entities.DTOs.NegotiationInsertProductDTO.ProductId">
+            <summary>
+            The unique identifier for the product being negotiated.
+            </summary>
+            <example>1</example>
+        </member>
+        <member name="P:WebAPI_SoftwareMind.Models.Entities.DTOs.NegotiationInsertProductDTO.ProposedPrice">
+            <summary>
+            The proposed price for the product in the negotiation.
+            The price must be greater than zero.
+            </summary>
+            <example>100.50</example>
+        </member>
+        <member name="T:WebAPI_SoftwareMind.Models.Entities.DTOs.NegotiationNegotiateDTO">
+            <summary>
+            DTO used for negotiating an existing product price within an active negotiation.
+            This model is used when retrying negotiations with a new proposed price.
+            </summary>
+        </member>
+        <member name="P:WebAPI_SoftwareMind.Models.Entities.DTOs.NegotiationNegotiateDTO.NegotiationId">
+            <summary>
+            The unique identifier of the negotiation.
+            </summary>
+            <example>1</example>
+        </member>
+        <member name="P:WebAPI_SoftwareMind.Models.Entities.DTOs.NegotiationNegotiateDTO.ProposedPrice">
+            <summary>
+            The proposed price for the product in the negotiation.
+            The price must be greater than zero.
+            </summary>
+            <example>100.50</example>
+        </member>
+        <member name="T:WebAPI_SoftwareMind.Models.Entities.Employee">
+            <summary>
+            Represents an employee in the system.
+            </summary>
+        </member>
+        <member name="P:WebAPI_SoftwareMind.Models.Entities.Employee.EmployeeId">
+            <summary>
+            The unique identifier of the employee.
+            </summary>
+            <example>1</example>
+        </member>
+        <member name="P:WebAPI_SoftwareMind.Models.Entities.Employee.Username">
+            <summary>
+            The username of the employee for login purposes.
+            </summary>
+            <example>admin</example>
+        </member>
+        <member name="P:WebAPI_SoftwareMind.Models.Entities.Employee.PasswordHash">
+            <summary>
+            The password hash of the employee. It should be securely stored.
+            </summary>
+            <example>AQAAAAIAAYagAAAAEBQpka2B/elN4o/MsP7coj7lpwfbbHqZrfcBzAqW91eV3ZEXb0cFjqIX+bxg0cLk3g==</example>
+        </member>
+        <member name="T:WebAPI_SoftwareMind.Models.Entities.Product">
+            <summary>
+            Represents a product in the system.
+            </summary>
+        </member>
+        <member name="P:WebAPI_SoftwareMind.Models.Entities.Product.ProductId">
+            <summary>
+            The unique identifier of the product.
+            </summary>
+            <example>12</example>
+        </member>
+        <member name="P:WebAPI_SoftwareMind.Models.Entities.Product.Name">
+            <summary>
+            The name of the product.
+            </summary>
+            <example>Laptop</example>
+        </member>
+        <member name="P:WebAPI_SoftwareMind.Models.Entities.Product.Price">
+            <summary>
+            The price of the product.
+            </summary>
+            <example>999.99</example>
+        </member>
+        <member name="T:WebAPI_SoftwareMind.Models.Api.LoginRequest">
+            <summary>
+            Represents the request model for logging in.
+            </summary>
+        </member>
+        <member name="P:WebAPI_SoftwareMind.Models.Api.LoginRequest.Username">
+            <summary>
+            The username of the user.
+            </summary>
+            <example>admin</example>
+        </member>
+        <member name="P:WebAPI_SoftwareMind.Models.Api.LoginRequest.Password">
+            <summary>
+            The password of the user.
+            </summary>
+            <example>admin123</example>
+        </member>
+        <member name="T:WebAPI_SoftwareMind.Models.Api.LoginResponse">
+            <summary>
+            Represents the response model for login authentication.
+            </summary>
+        </member>
+        <member name="P:WebAPI_SoftwareMind.Models.Api.LoginResponse.UserName">
+            <summary>
+            The username of the authenticated user.
+            </summary>
+            <example>admin</example>
+        </member>
+        <member name="P:WebAPI_SoftwareMind.Models.Api.LoginResponse.AccessToken">
+            <summary>
+            The access token provided for authenticated requests.
+            </summary>
+            <example>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ</example>
+        </member>
+        <member name="P:WebAPI_SoftwareMind.Models.Api.LoginResponse.ExpiresIn">
+            <summary>
+            The expiration time of the access token in seconds.
+            </summary>
+            <example>3600</example>
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Services.BusinessLogic.NegotiationService.NegotiationExistAsync(System.Int32)">
+            <summary>
+            Checks if a negotiation exists for the given ID.
+            </summary>
+            <param name="id">The unique identifier of the negotiation</param>
+            <returns>True if the negotiation exists, otherwise false</returns>
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Services.BusinessLogic.NegotiationService.GetExistingNegotiationAsync(System.Int32)">
+            <summary>
+            Retrieves an existing negotiation for the specified product.
+            </summary>
+            <param name="productId">The unique identifier of the product</param>
+            <returns>A negotiation if it exists, otherwise null</returns>
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Services.BusinessLogic.NegotiationService.CreateNegotiationAsync(WebAPI_SoftwareMind.Models.Entities.DTOs.NegotiationInsertProductDTO)">
+            <summary>
+            Creates a new negotiation for a product.
+            </summary>
+            <param name="dto">Data transfer object for creating a negotiation</param>
+            <returns>The created negotiation</returns>
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Services.BusinessLogic.NegotiationService.NegotiateAsync(WebAPI_SoftwareMind.Models.Entities.DTOs.NegotiationNegotiateDTO)">
+            <summary>
+            Allows to retry negotiation by proposing a new price.
+            </summary>
+            <param name="dto">Negotiation data for retrying</param>
+            <returns>The updated negotiation</returns>
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Services.BusinessLogic.NegotiationService.GetNegotiationByIdAsync(System.Int32)">
+            <summary>
+            Retrieves a negotiation by its ID.
+            </summary>
+            <param name="id">The unique identifier of the negotiation</param>
+            <returns>The negotiation if found, otherwise null</returns>
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Services.BusinessLogic.NegotiationService.GetAllNegotiationsAsync">
+            <summary>
+            Retrieves all negotiations.
+            </summary>
+            <returns>A list of all negotiations</returns>
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Services.BusinessLogic.NegotiationService.DeleteNegotiationAsync(System.Int32)">
+            <summary>
+            Deletes a negotiation by its ID.
+            </summary>
+            <param name="negotiationId">The unique identifier of the negotiation</param>
+            <returns>The deleted negotiation</returns>
+        </member>
+        <member name="M:WebAPI_SoftwareMind.Services.BusinessLogic.NegotiationService.DecisionNegotiationAsync(WebAPI_SoftwareMind.Models.Entities.DTOs.NegotiationDecisionDTO)">
+            <summary>
+            Decides the outcome of a negotiation (accept or reject).
+            </summary>
+            <param name="dto">The decision data for the negotiation</param>
+            <returns>The updated negotiation</returns>
+        </member>
+        <member name="M:ProductController.GetAll">
+            <summary>
+            Retrieves a list of all products.
+            </summary>
+            <returns>A list of products.</returns>
+            <response code="200">Returns the list of products</response>
+            <response code="500">If there is an internal server error</response>
+        </member>
+        <member name="M:ProductController.GetById(System.Int32)">
+            <summary>
+            Gets a product by its unique id.
+            </summary>
+            <param name="id">The unique id of the product.</param>
+            <returns>Returns the product with the specified ID.</returns>
+            <response code="200">Returns the product</response>
+            <response code="404">If the product is not found</response>
+        </member>
+        <member name="M:ProductController.Create(WebAPI_SoftwareMind.Models.Entities.Product)">
+            <summary>
+            Creates a new product.
+            </summary>
+            <param name="product">The product to create.</param>
+            <response code="201">Returns the created product</response>
+            <response code="400">If the input is invalid</response>
+            <response code="401">If the user is not authorized</response>
+        </member>
+        <member name="T:Negotiation">
+            <summary>
+            Represents a negotiation process for a product.
+            </summary>
+        </member>
+        <member name="P:Negotiation.NegotiationId">
+            <summary>
+            The unique identifier of the negotiation.
+            </summary>
+            <example>1</example>
+        </member>
+        <member name="P:Negotiation.ProductId">
+            <summary>
+            The unique identifier of the product involved in the negotiation.
+            </summary>
+            <example>12</example>
+        </member>
+        <member name="P:Negotiation.ProposedPrice">
+            <summary>
+            The proposed price for the product during the negotiation.
+            </summary>
+            <example>150.50</example>
+        </member>
+        <member name="P:Negotiation.Status">
+            <summary>
+            The current status of the negotiation. Possible values: 'Pending', 'Accepted', 'Rejected'.
+            </summary>
+            <example>Pending</example>
+        </member>
+        <member name="P:Negotiation.Attempts">
+            <summary>
+            The number of attempts made to negotiate the price.
+            </summary>
+            <example>2</example>
+        </member>
+        <member name="P:Negotiation.ExpirationDate">
+            <summary>
+            The expiration date of the negotiation, after which it is no longer valid.
+            </summary>
+            <example>2025-04-17T00:00:00Z</example>
+        </member>
+        <member name="P:Negotiation.Product">
+            <summary>
+            The product associated with the negotiation.
+            </summary>
+        </member>
+    </members>
+</doc>

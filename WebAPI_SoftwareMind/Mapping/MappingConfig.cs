@@ -8,7 +8,7 @@ namespace WebAPI_SoftwareMind.Mapping
     {
         public static void RegisterMappings()
         {
-            TypeAdapterConfig<NegotiationDTO, Negotiation>
+            TypeAdapterConfig<NegotiationInsertProductDTO, Negotiation>
                 .NewConfig()
                 .Map(dest => dest.ProductId, src => src.ProductId) 
                 .Ignore(dest => dest.Product) 

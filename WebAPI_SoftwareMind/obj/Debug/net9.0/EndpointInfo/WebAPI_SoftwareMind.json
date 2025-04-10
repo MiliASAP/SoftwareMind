@@ -1,8 +1,9 @@
 {
   "openapi": "3.0.4",
   "info": {
-    "title": "WebAPI_SoftwareMind",
-    "version": "1.0"
+    "title": "Negotiation API",
+    "description": "An ASP.NET Core Web API for managing products and negotiations",
+    "version": "v1"
   },
   "paths": {
     "/api/Auth/Login": {
@@ -10,7 +11,9 @@
         "tags": [
           "Auth"
         ],
+        "summary": "Logs in a user and returns an authentication token.",
         "requestBody": {
+          "description": "The login request containing username and password.",
           "content": {
             "application/json": {
               "schema": {
@@ -31,7 +34,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the JWT token on successful authentication",
             "content": {
               "text/plain": {
                 "schema": {
@@ -49,6 +52,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized, invalid credentials"
           }
         }
       }
@@ -58,28 +64,30 @@
         "tags": [
           "Negotiation"
         ],
+        "summary": "Starts a new negotiation for a product.",
         "requestBody": {
+          "description": "Data transfer object for starting a negotiation",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NegotiationDTO"
+                "$ref": "#/components/schemas/NegotiationInsertProductDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/NegotiationDTO"
+                "$ref": "#/components/schemas/NegotiationInsertProductDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/NegotiationDTO"
+                "$ref": "#/components/schemas/NegotiationInsertProductDTO"
               }
             }
           }
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Negotiation successfully created",
             "content": {
               "text/plain": {
                 "schema": {
@@ -94,6 +102,48 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Negotiation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data or product not found"
+          }
+        }
+      }
+    },
+    "/api/Negotiation": {
+      "get": {
+        "tags": [
+          "Negotiation"
+        ],
+        "summary": "Retrieves all negotiations.",
+        "responses": {
+          "200": {
+            "description": "Returns a list of negotiations",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Negotiation"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Negotiation"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Negotiation"
+                  }
                 }
               }
             }
@@ -106,10 +156,12 @@
         "tags": [
           "Negotiation"
         ],
+        "summary": "Retrieves a negotiation by its unique identifier.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The negotiation's unique identifier",
             "required": true,
             "schema": {
               "type": "integer",
@@ -119,7 +171,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the requested negotiation",
             "content": {
               "text/plain": {
                 "schema": {
@@ -137,6 +189,115 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Negotiation not found"
+          }
+        }
+      }
+    },
+    "/api/Negotiation/decide": {
+      "put": {
+        "tags": [
+          "Negotiation"
+        ],
+        "summary": "Makes a decision on a negotiation (accept or reject).",
+        "requestBody": {
+          "description": "The negotiation decision data",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NegotiationDecisionDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NegotiationDecisionDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/NegotiationDecisionDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Negotiation updated successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Negotiation"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Negotiation"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Negotiation"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Negotiation not found"
+          }
+        }
+      }
+    },
+    "/api/Negotiation/negotiate": {
+      "put": {
+        "tags": [
+          "Negotiation"
+        ],
+        "summary": "Allows to retry negotiation by proposing a new price.",
+        "requestBody": {
+          "description": "Negotiation details for retrying",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NegotiationNegotiateDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NegotiationNegotiateDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/NegotiationNegotiateDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Negotiation updated successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Negotiation"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Negotiation"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Negotiation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid data or negotiation already decided"
           }
         }
       }
@@ -146,9 +307,10 @@
         "tags": [
           "Product"
         ],
+        "summary": "Retrieves a list of all products.",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the list of products",
             "content": {
               "text/plain": {
                 "schema": {
@@ -175,6 +337,9 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "If there is an internal server error"
           }
         }
       },
@@ -182,7 +347,9 @@
         "tags": [
           "Product"
         ],
+        "summary": "Creates a new product.",
         "requestBody": {
+          "description": "The product to create.",
           "content": {
             "application/json": {
               "schema": {
@@ -202,8 +369,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Returns the created product",
             "content": {
               "text/plain": {
                 "schema": {
@@ -221,6 +388,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "If the input is invalid"
+          },
+          "401": {
+            "description": "If the user is not authorized"
           }
         }
       }
@@ -230,10 +403,12 @@
         "tags": [
           "Product"
         ],
+        "summary": "Gets a product by its unique id.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "The unique id of the product.",
             "required": true,
             "schema": {
               "type": "integer",
@@ -243,7 +418,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Returns the product",
             "content": {
               "text/plain": {
                 "schema": {
@@ -261,6 +436,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "If the product is not found"
           }
         }
       }
@@ -277,32 +455,44 @@
         "properties": {
           "username": {
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "The username of the user.",
+            "example": "admin"
           },
           "password": {
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "The password of the user.",
+            "example": "admin123"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Represents the request model for logging in."
       },
       "LoginResponse": {
         "type": "object",
         "properties": {
           "userName": {
             "type": "string",
-            "nullable": true
+            "description": "The username of the authenticated user.",
+            "nullable": true,
+            "example": "admin"
           },
           "accessToken": {
             "type": "string",
-            "nullable": true
+            "description": "The access token provided for authenticated requests.",
+            "nullable": true,
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
           },
           "expiresIn": {
             "type": "integer",
-            "format": "int32"
+            "description": "The expiration time of the access token in seconds.",
+            "format": "int32",
+            "example": 3600
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Represents the response model for login authentication."
       },
       "Negotiation": {
         "required": [
@@ -314,35 +504,72 @@
         "properties": {
           "negotiationId": {
             "type": "integer",
-            "format": "int32"
+            "description": "The unique identifier of the negotiation.",
+            "format": "int32",
+            "example": 1
           },
           "productId": {
             "type": "integer",
-            "format": "int32"
+            "description": "The unique identifier of the product involved in the negotiation.",
+            "format": "int32",
+            "example": 12
           },
           "proposedPrice": {
             "type": "number",
-            "format": "double"
+            "description": "The proposed price for the product during the negotiation.",
+            "format": "double",
+            "example": 150,5
           },
           "status": {
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "The current status of the negotiation. Possible values: 'Pending', 'Accepted', 'Rejected'.",
+            "example": "Pending"
           },
           "attempts": {
             "type": "integer",
-            "format": "int32"
+            "description": "The number of attempts made to negotiate the price.",
+            "format": "int32",
+            "example": 2
           },
           "expirationDate": {
             "type": "string",
-            "format": "date-time"
+            "description": "The expiration date of the negotiation, after which it is no longer valid.",
+            "format": "date-time",
+            "example": "2025-04-17T00:00:00Z"
           },
           "product": {
             "$ref": "#/components/schemas/Product"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Represents a negotiation process for a product."
       },
-      "NegotiationDTO": {
+      "NegotiationDecisionDTO": {
+        "required": [
+          "decision",
+          "negotiationId"
+        ],
+        "type": "object",
+        "properties": {
+          "negotiationId": {
+            "type": "integer",
+            "description": "The unique identifier for the negotiation.",
+            "format": "int32",
+            "example": 10
+          },
+          "decision": {
+            "minLength": 1,
+            "pattern": "(?i)^(accept|reject)$",
+            "type": "string",
+            "description": "The decision regarding the negotiation, either \"accept\" or \"reject\".",
+            "example": "accept"
+          }
+        },
+        "additionalProperties": false,
+        "description": "DTO for negotiating the decision on a product's price.\r\nThis model is used when the negotiation process is being decided, either by accepting or rejecting the negotiation."
+      },
+      "NegotiationInsertProductDTO": {
         "required": [
           "productId",
           "proposedPrice"
@@ -351,15 +578,44 @@
         "properties": {
           "productId": {
             "type": "integer",
-            "format": "int32"
+            "description": "The unique identifier for the product being negotiated.",
+            "format": "int32",
+            "example": 1
           },
           "proposedPrice": {
             "minimum": 0,01,
             "type": "number",
-            "format": "double"
+            "description": "The proposed price for the product in the negotiation.\r\nThe price must be greater than zero.",
+            "format": "double",
+            "example": 100,5
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "DTO used for inserting a new negotiation with a product.\r\nThis model is used when creating a new negotiation for a product, where the user proposes a price."
+      },
+      "NegotiationNegotiateDTO": {
+        "required": [
+          "negotiationId",
+          "proposedPrice"
+        ],
+        "type": "object",
+        "properties": {
+          "negotiationId": {
+            "type": "integer",
+            "description": "The unique identifier of the negotiation.",
+            "format": "int32",
+            "example": 1
+          },
+          "proposedPrice": {
+            "minimum": 0,01,
+            "type": "number",
+            "description": "The proposed price for the product in the negotiation.\r\nThe price must be greater than zero.",
+            "format": "double",
+            "example": 100,5
+          }
+        },
+        "additionalProperties": false,
+        "description": "DTO used for negotiating an existing product price within an active negotiation.\r\nThis model is used when retrying negotiations with a new proposed price."
       },
       "Product": {
         "required": [
@@ -370,19 +626,26 @@
         "properties": {
           "productId": {
             "type": "integer",
-            "format": "int32"
+            "description": "The unique identifier of the product.",
+            "format": "int32",
+            "example": 12
           },
           "name": {
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "description": "The name of the product.",
+            "example": "Laptop"
           },
           "price": {
             "minimum": 0,01,
             "type": "number",
-            "format": "double"
+            "description": "The price of the product.",
+            "format": "double",
+            "example": 999,99
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Represents a product in the system."
       }
     },
     "securitySchemes": {

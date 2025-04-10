@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 using System.Text;
 using WebAPI_SoftwareMind.Filters.Action;
 using WebAPI_SoftwareMind.Mapping;
 using WebAPI_SoftwareMind.Services;
+using WebAPI_SoftwareMind.Services.Authorization;
+using WebAPI_SoftwareMind.Services.BusinessLogic;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +41,18 @@ builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
+
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Negotiation API",
+        Description = "An ASP.NET Core Web API for managing products and negotiations"
+    });
+
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    options.IncludeXmlComments(xmlPath);
+
     var jwtSecurityScheme = new OpenApiSecurityScheme
     {
         BearerFormat = "JWT",
@@ -53,11 +68,14 @@ builder.Services.AddSwaggerGen(options =>
         }
     };
 
+
     options.AddSecurityDefinition("Bearer", jwtSecurityScheme);
     options.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {jwtSecurityScheme,Array.Empty<string>()}
     });
+
+
 });
 
 builder.Services.AddDbContext<NegotiationDbContext>(options =>
@@ -66,8 +84,11 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 builder.Services.AddScoped<IProductService, ProductService>(); 
 builder.Services.AddScoped<INegotiationService, NegotiationService>();
 builder.Services.AddScoped<JwtService>();
-builder.Services.AddScoped<Product_ValidateProductIdFilter>();
-builder.Services.AddScoped<Negotiation_ValidateNagotiationCreateFilter>();
+builder.Services.AddScoped<ValidateProductIdFilter>();
+builder.Services.AddScoped<ValidateNegotiationIdFilter>();
+
+
+builder.Services.AddHostedService<ExpiredNegotiationCleanerService>();
 
 builder.Services.AddControllers();
 
@@ -78,12 +99,17 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Negotiation API v1");
+        options.RoutePrefix = string.Empty;
+    });
 }
 
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
 
 DbInitializer.Seed(app);
 

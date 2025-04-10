@@ -9,7 +9,7 @@ public static class DbInitializer
         using var scope = app.ApplicationServices.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<NegotiationDbContext>();
 
-        context.Database.EnsureCreated(); // tworzy bazę jeśli nie istnieje
+        context.Database.EnsureCreated(); 
 
         if (!context.Products.Any())
         {

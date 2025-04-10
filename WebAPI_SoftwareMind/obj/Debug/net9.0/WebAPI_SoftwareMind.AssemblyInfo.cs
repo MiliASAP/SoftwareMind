@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebAPI_SoftwareMind")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+60de9c29f67edbc4e9c6548922f4acd1d474b0e8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+020fd3d8dafde854df7333b750512b7eadd8fc7e")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebAPI_SoftwareMind")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebAPI_SoftwareMind")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

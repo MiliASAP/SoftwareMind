@@ -168,3 +168,13 @@ C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_Sof
 C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\obj\Debug\net9.0\WebAPI_SoftwareMind.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\bin\Debug\net9.0\Mapster.dll
 C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\bin\Debug\net9.0\Mapster.Core.dll
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\bin\Debug\net9.0\WebAPI_SoftwareMind.xml
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\obj\Debug\net9.0\WebAPI_SoftwareMind.xml
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\bin\Debug\net9.0\Antlr3.Runtime.dll
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\bin\Debug\net9.0\CommandLine.dll
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\bin\Debug\net9.0\Iesi.Collections.dll
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\bin\Debug\net9.0\NHibernate.dll
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\bin\Debug\net9.0\Remotion.Linq.dll
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\bin\Debug\net9.0\Remotion.Linq.EagerFetching.dll
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\bin\Debug\net9.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\likei\OneDrive\Pulpit\praca_SoftwareMind\WebAPI_SoftwareMind\WebAPI_SoftwareMind\obj\Debug\net9.0\MvcTestingAppManifest.json
